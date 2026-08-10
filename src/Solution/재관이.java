@@ -31,7 +31,7 @@ public class 재관이 {
 			}
 			
 			
-			System.out.println(sum);
+			System.out.println("#" + t + " " + sum);
 		}
 	}
 	
