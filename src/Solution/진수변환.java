@@ -17,8 +17,5 @@ public class 진수변환 {
 			tmp += negative;
 		}
 		System.out.println(tmp);
-		
-		
-		
 	}
 }

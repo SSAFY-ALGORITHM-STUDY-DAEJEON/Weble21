@@ -1,9 +1,6 @@
 package Solution;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
 
 
 public class 행운의문자열 {
@@ -34,8 +31,7 @@ public class 행운의문자열 {
 		for(int i = 0; i<arr.length; i++) {
 			
 			if(v[i]) continue;
-			if(k > 0 && sel[k-1] == arr[i]) continue;
-			
+			if(k > 0 && sel[k-1] == arr[i]) continue;			
 			if(used[arr[i] - 'a']) continue;
 			
 			used[arr[i] - 'a'] = true;
