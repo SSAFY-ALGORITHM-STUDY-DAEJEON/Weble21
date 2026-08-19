@@ -49,7 +49,7 @@ public class 최소_스패닝_트리 {
 				arr[i] = node;				
 			}
 			Arrays.sort(arr, Comparator.comparing(n -> n.value));
-			//System.out.println(Arrays.toString(arr));
+			// System.out.println(Arrays.toString(arr));
 			long result = kruskal();
 			
 			System.out.println("#" + t + " " + result);
