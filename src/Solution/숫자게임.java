@@ -9,7 +9,16 @@ public class 숫자게임 {
 		int tc = Integer.parseInt(bf.readLine());
 		for(int t = 1; t <= tc; t++) {
 			String str = bf.readLine();
-			
+			recursive(str, 0);
 		}
+	}
+
+	private static void recursive(String str, int cnt) {
+		if(str.length() == 1) {
+			return;
+		}
+		
+		
+		
 	}
 }
