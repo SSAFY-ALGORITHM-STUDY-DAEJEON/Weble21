@@ -44,7 +44,7 @@ public class 치즈 {
 				for (int j = 1; j < m - 1; j++) {
 					
 					if (arr[i][j] == 1 && !v[i][j]) { 
-						remain = dfs(i, j) + remain;			
+						remain += dfs(i, j);			
 					}
 				}
 			}
@@ -89,7 +89,7 @@ public class 치즈 {
 					continue;
 				if (v[nx][ny])
 					continue;
-				if(arr[nx][ny] == 0) {
+				if(arr[nx][ny] == 0 || arr[nx][ny] == 3) {
 					arr[nx][ny] = 3;
 					s.offerLast(new int[] {nx, ny});
 					v[nx][ny] = true;
@@ -104,14 +104,12 @@ public class 치즈 {
 	static int dfs(int x, int y) {
 		int rest_cnt = 0;
 		Deque<int[]> s = new ArrayDeque<>();
-		if (arr[x][y] == 1) {
-			v[x][y] = true;
-			s.offerLast(new int[] { x, y });
-			if (check(x, y)) {
-				arr[x][y] = 2;
-			} else {
-				rest_cnt++;
-			}
+		v[x][y] = true;
+		s.offerLast(new int[] { x, y });
+		if (check(x, y)) {
+			arr[x][y] = 2;
+		} else {
+			rest_cnt++;
 		}
 		
 
