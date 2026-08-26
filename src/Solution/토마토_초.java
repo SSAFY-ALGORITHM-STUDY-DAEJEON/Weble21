@@ -7,17 +7,6 @@ public class 토마토_초 {
 	static int[] dx = { 1, -1, 0, 0, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1, 0, 0 };
 	static int[] dh = { 0, 0, 0, 0, -1, 1 };
-//	public static class Node {
-//		int x;
-//		int y;
-//		int h;
-//		Node(int x, int y, int h) {
-//			this.x = x;
-//			this.y = y;
-//			this.h = h;
-//		}
-//	}
-	static boolean[][][] visited;
 	static int[][][] arr;
 	static int m, n, h;
 
@@ -29,7 +18,6 @@ public class 토마토_초 {
 		n = Integer.parseInt(st.nextToken());
 		h = Integer.parseInt(st.nextToken());
 		arr = new int[m][n][h];
-		visited = new boolean[m][n][h];
 		ArrayList<int[]> tomato = new ArrayList<>();
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < n; j++) {
@@ -44,9 +32,7 @@ public class 토마토_초 {
 
 			}
 		}
-		for (int i = 0; i < tomato.size(); i++) {
-			bfs(tomato.get(i));
-		}
+		bfs(tomato);
 		int result = 0;
 		loop: for (int i = 0; i < h; i++) {
 			for (int j = 0; j < n; j++) {
@@ -65,21 +51,18 @@ public class 토마토_초 {
 
 	}
 
-	private static void bfs(int[] tomato) {
+	private static void bfs(ArrayList<int[]> tomato) {
 		Deque<int[]> dq = new ArrayDeque<>();
-		int curX = tomato[0];
-		int curY = tomato[1];
-		int curH = tomato[2];
-		//visited[curX][curY][curH] = true;
-		dq.offerLast(new int[] { curX, curY, curH });
+		for (int[] is : tomato) {
+			dq.offerLast(is);
+		}
 
 		while (!dq.isEmpty()) {
 			int[] cur = dq.pollFirst();
-			curX = cur[0];
-			curY = cur[1];
-			curH = cur[2];
-			int tmp = arr[curX][curY][curH];
-			int cnt = tmp + 1;
+			int curX = cur[0];
+			int curY = cur[1];
+			int curH = cur[2];
+			int cnt = arr[curX][curY][curH] + 1;
 			for (int d = 0; d < 6; d++) {
 				int nx = curX + dx[d];
 				int ny = curY + dy[d];
@@ -87,20 +70,11 @@ public class 토마토_초 {
 				if (nx < 0 || nx >= m || ny < 0 || ny >= n || nh < 0 || nh >= h) {
 					continue;
 				}
-				if (arr[nx][ny][nh] == -1) {
+				if (arr[nx][ny][nh] != 0) {
 					continue;
 				}
-				if(arr[nx][ny][nh] == 0) {
-					arr[nx][ny][nh] = cnt;
-					dq.offerLast(new int[] {nx, ny, nh});
-				}
-				
-				if (cnt >= arr[nx][ny][nh]) {
-					continue;
-				} else {
-					arr[nx][ny][nh] = cnt;
-					dq.offerLast(new int[] {nx, ny, nh});
-				}
+				arr[nx][ny][nh] = cnt;
+				dq.offerLast(new int[] {nx, ny, nh});
 				
 			}
 		}
