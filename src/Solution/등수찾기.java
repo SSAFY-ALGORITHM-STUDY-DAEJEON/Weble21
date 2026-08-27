@@ -37,7 +37,6 @@ public class 등수찾기 {
 		
 		int top = dfs(arr, x);
 		int btm = dfs(reverse, x);
-		System.out.println(top + " " + btm);
 		top += 1;
 		btm = n - btm;
 		System.out.println(top + " " + btm);
