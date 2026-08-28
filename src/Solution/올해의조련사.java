@@ -36,7 +36,7 @@ public class 올해의조련사 {
 
 		}
 	}
-
+	
 	// 투 포인터
 	static char checkArr() {
 
