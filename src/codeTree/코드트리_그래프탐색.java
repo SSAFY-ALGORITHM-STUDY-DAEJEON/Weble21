@@ -1,4 +1,4 @@
-package Solution;
+package codeTree;
 
 import java.util.*;
 import java.io.*;
@@ -17,6 +17,7 @@ public class 코드트리_그래프탐색 {
 			int node = sc.nextInt();
 			int v = sc.nextInt();
 			arr[node].add(v);
+			arr[v].add(node);
 		}
 		result = new ArrayList<>();
 		boolean[] v = new boolean[n+1];
