@@ -23,7 +23,7 @@ public class 한빈이와_SpotMart {
 				arr[i] = Integer.parseInt(st.nextToken());
 
 			}
-			System.out.println(Arrays.toString(arr));
+
 			
 			recursive(arr, new int[] {Integer.MAX_VALUE, Integer.MAX_VALUE}, 0, new boolean[n]);
 			if(arr.length < 2) {
@@ -43,7 +43,7 @@ public class 한빈이와_SpotMart {
 		if (k == sel.length) {
 			int sum = sel[0] + sel[1];
 			if (sum <= m) {
-				System.out.println(Arrays.toString(sel));
+				// System.out.println(Arrays.toString(sel));
 				max = Math.max(max, sum);
 			}
 			return;
