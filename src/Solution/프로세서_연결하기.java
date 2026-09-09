@@ -102,9 +102,7 @@ public class 프로세서_연결하기 {
 			}
 			nx = nx + dx[d];
 			ny = ny + dy[d];
-
 		}
-
 		return true;
 	}
 }
