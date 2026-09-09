@@ -3,7 +3,7 @@ package Solution;
 import java.io.*;
 import java.util.*;
 
-public class 면접 {
+public class 기출_면접 {
 	static int score, cnt;
 	
 	// 배열따라 계산하기 - false면 문제 맞음, true면 틀림 -> cnt 초기화
