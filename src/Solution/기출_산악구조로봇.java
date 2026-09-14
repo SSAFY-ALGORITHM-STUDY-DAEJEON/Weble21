@@ -26,6 +26,7 @@ public class 기출_산악구조로봇 {
 		}
 	}
 
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		int tc = Integer.parseInt(bf.readLine());
@@ -79,7 +80,7 @@ public class 기출_산악구조로봇 {
 				// 높이가 같음
 				if(arr[x][y] == arr[nx][ny]) {
 					cost = 1;
-				} 
+				}
 				// 오르막
 				else if(arr[x][y] < arr[nx][ny]) {
 					int tmp = arr[nx][ny] - arr[x][y];
