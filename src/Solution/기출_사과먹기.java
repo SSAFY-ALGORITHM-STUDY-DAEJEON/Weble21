@@ -17,13 +17,15 @@ public class 기출_사과먹기 {
 		int dir;
 		int apple;
 		int canTurn;
+		int cost;
 
-		State(int x, int y, int dir, int apple, int canTurn) {
+		State(int x, int y, int dir, int apple, int canTurn, int cost) {
 			this.x = x;
 			this.y = y;
 			this.dir = dir;
 			this.apple = apple;
 			this.canTurn = canTurn;
+			this.cost = cost;
 		}
 
 	}
@@ -45,13 +47,13 @@ public class 기출_사과먹기 {
 					}
 				}
 			}
-			int answer = bfs();
+			int answer = dijkstra();
 			System.out.println("#" + t + " " + answer);
 
 		}
 	}
 
-	private static int bfs() {
+	private static int dijkstra() {
 		// [x][y][dir][apple][canTurn]
 		int[][][][][] dist = new int[n][n][4][m + 2][2];
 		for (int x = 0; x < n; x++) {
@@ -63,55 +65,52 @@ public class 기출_사과먹기 {
 				}
 			}
 		}
-		Deque<State> dq = new ArrayDeque<>();
-		
-		dist[0][0][0][1][1] = 0;
-		
-		dq.addFirst(new State(0,0,0,1,1));
+		PriorityQueue<State> pq = new PriorityQueue<>((a, b) -> a.cost - b.cost);
 
-		while(!dq.isEmpty()) {
-			State cur = dq.pollFirst();
-			
+		dist[0][0][0][1][1] = 0;
+
+		pq.add(new State(0, 0, 0, 1, 1, 0));
+
+		while (!pq.isEmpty()) {
+			State cur = pq.poll();
+
 			int x = cur.x;
 			int y = cur.y;
 			int dir = cur.dir;
 			int apple = cur.apple;
 			int canTurn = cur.canTurn;
-			
-			int curCost = dist[x][y][dir][apple][canTurn];
-			
-			if(apple == m+1) {
+			int curCost = cur.cost;
+
+			if (curCost > dist[x][y][dir][apple][canTurn]) {
+				continue;
+			}
+			if (apple == m + 1) {
 				return curCost;
 			}
-			
-			// 앞으로 이동
 			int nx = x + dx[dir];
 			int ny = y + dy[dir];
-			
-			if(nx <0 || nx >= n || ny < 0 || ny >= n) {
-				;
-			} else {
+			if (nx >= 0 && nx < n && ny >= 0 && ny < n) {
+
 				int nextApple = apple;
-				if(arr[nx][ny] == apple) {
+				if (arr[nx][ny] == apple) {
 					nextApple++;
 				}
-				if(dist[nx][ny][dir][nextApple][1] > curCost) {
+				if (dist[nx][ny][dir][nextApple][1] > curCost) {
 					dist[nx][ny][dir][nextApple][1] = curCost;
-					
-					dq.addFirst(new State(nx, ny, dir, nextApple, 1));
+					pq.add(new State(nx, ny, dir, nextApple, 1, curCost));
 				}
+				if (canTurn == 1) {
+					int nextDir = (dir + 1) % 4;
+					int nextCost = curCost + 1;
+					if (dist[x][y][nextDir][apple][0] > nextCost) {
+						dist[x][y][nextDir][apple][0] = nextCost;
+						pq.add(new State(x, y, nextDir, apple, 0, nextCost));
+					}
+				}
+
 			}
-			// 오른쪽 회전, 비용 = 1
-			if(canTurn == 1) {
-				int nextDir = (dir+1)%4;
-				if(dist[x][y][nextDir][apple][0] > curCost + 1) {
-					dist[x][y][nextDir][apple][0] = curCost + 1;
-					dq.addLast(new State(x, y, nextDir, apple, 0));
-				}
-				
-			}			
-			
 		}
 		return -1;
+
 	}
 }

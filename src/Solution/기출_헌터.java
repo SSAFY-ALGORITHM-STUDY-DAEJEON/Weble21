@@ -69,6 +69,8 @@ public class 기출_헌터 {
 						plan[k] = tmp;
 						makePlan(k+1, canGo, plan, v);
 						v[i] = false;
+					} else {
+						continue;
 					}
 				} else {
 					v[i] = true;
