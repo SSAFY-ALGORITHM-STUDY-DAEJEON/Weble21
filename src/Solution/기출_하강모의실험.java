@@ -28,13 +28,13 @@ public class 기출_하강모의실험 {
 	}
 	
 	
-
 	private static int right() {
-		for(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			int cur = 0;
 			int cnt = 1;
-			double power = 1;
-			if(arr[i][cur] == 0) {
+			int power = arr[cur][i];
+			if(power == 0) {
+	
 				continue;
 			}
 			
