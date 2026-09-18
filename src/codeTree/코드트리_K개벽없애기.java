@@ -3,7 +3,7 @@ package codeTree;
 import java.io.*;
 import java.util.*;
 
-public class K개벽없애기 {
+public class 코드트리_K개벽없애기 {
 	public static class Pos {
 		int x;
 		int y;
