@@ -34,7 +34,7 @@ public class 코드트리_K번최댓값으로이동하기 {
 			}
 			loop : for (int t = 0; t < n; t++) {
 				for (int j = 0; j < n; j++) {
-					if(arr[t][j] == max) {
+					if(arr[t][j] == max && v[t][j]) {
 						x = t;
 						y = j;
 						break loop;
